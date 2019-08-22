@@ -1,4 +1,4 @@
-package controller.service.dao.model;
+package com.iris.get19.pbms.dao.model;
 
 
 import javax.persistence.Column;
@@ -11,19 +11,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="project_allocation")
+@Table(name="DevAllocation")
 public class ProjectAllocation {
 	@Id
 	@GeneratedValue
-	@Column(name="ALLOCATION_ID")
+	@Column(name="id")
 	private int allocationId;
 	
 	@OneToOne
-	@JoinColumn(name="CONFIG_ID")
+	@JoinColumn(name="configid")
 	ProjectConfiguration pcObj;
 	
 	@OneToOne
-	@JoinColumn(name="DEV_ID")
+	@JoinColumn(name="devid")
 	Developer dObj;
 	
 	public ProjectAllocation() {

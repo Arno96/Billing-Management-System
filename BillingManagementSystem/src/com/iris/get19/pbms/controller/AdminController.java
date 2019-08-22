@@ -1,4 +1,5 @@
-package controller.service;
+package com.iris.get19.pbms.controller;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import controller.service.dao.model.*;
-import controller.service.dao.impl.*;
+
+import com.iris.get19.pbms.dao.DeveloperDao;
+import com.iris.get19.pbms.dao.ProjectDao;
+import com.iris.get19.pbms.dao.RoleDao;
+import com.iris.get19.pbms.dao.model.DataEntryOperator;
+import com.iris.get19.pbms.dao.model.Developer;
+import com.iris.get19.pbms.dao.model.Project;
+import com.iris.get19.pbms.dao.model.ProjectAllocation;
+import com.iris.get19.pbms.dao.model.ProjectConfiguration;
+import com.iris.get19.pbms.dao.model.Role;
 @Controller
 public class AdminController {
 	
@@ -87,6 +96,11 @@ public class AdminController {
 	@RequestMapping(value= {"Bill"},method=RequestMethod.GET)
 	public String DevBills(@RequestParam(name="x") String month,@RequestParam(name="dev") Developer d,ModelMap map)
 	{
+		int i=d.getDeveloperId();
+		DataEntryOperator deo=developerDao.getBill(i, month);
+		int halfDay=deo.gethalfDay()/2;
+		int fullDay=deo.getfullDay();
+		double bill=(halfDay*)
 		map.addAttribute("de", d);
 		map.addAttribute("mo",month);
 		return "devDetail";

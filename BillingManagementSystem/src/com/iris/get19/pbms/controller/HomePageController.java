@@ -1,4 +1,4 @@
-package controller.service;
+package com.iris.get19.pbms.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

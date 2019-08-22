@@ -1,15 +1,20 @@
-package controller.service.dao.impl;
+package com.iris.get19.pbms.dao.impl;
+
 
 import java.util.List;
 
-import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import controller.service.dao.model.*;
+
+import com.iris.get19.pbms.dao.DeveloperDao;
+import com.iris.get19.pbms.dao.model.DataEntryOperator;
+import com.iris.get19.pbms.dao.model.Developer;
+import com.iris.get19.pbms.dao.model.ProjectAllocation;
 
 @Component
 @Repository(value="developerDao")
@@ -36,7 +41,9 @@ public class DeveloperDaoImpl implements DeveloperDao {
 		try
 		{
 			Session session=sessionFactory.getCurrentSession();
-			String s= "from Developer where Dev_Id=:x and Password=:y";
+			System.out.println(id + pass);
+			
+			String s= "from Developer where id=:x and password=:y";
 			Query<Developer> q = session.createQuery(s);
 			q.setParameter("x", id);
 			q.setParameter("y", pass);
@@ -97,5 +104,24 @@ public class DeveloperDaoImpl implements DeveloperDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public DataEntryOperator getBill(int id, String month) {
+		try {
+			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from DataEntryOperator where devid=:i and month=:m");
+			q.setParameter("i",id);
+			q.setParameter("m",month);
+			DataEntryOperator deo=new DataEntryOperator();
+			deo = (DataEntryOperator)q.getParameterValue(0);
+			return deo;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	
 	}
 }

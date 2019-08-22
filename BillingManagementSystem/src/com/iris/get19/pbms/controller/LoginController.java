@@ -1,4 +1,6 @@
-package controller.service;
+package com.iris.get19.pbms.controller;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import controller.service.dao.impl.*;
-import controller.service.dao.model.*;
+import com.iris.get19.pbms.dao.DeveloperDao;
+import com.iris.get19.pbms.dao.model.Developer;
 
 @Controller
 public class LoginController {
@@ -17,7 +19,7 @@ public class LoginController {
 	private DeveloperDao developerDao;
 	
 	@RequestMapping(value="validateRole",method=RequestMethod.POST)
-	public String validateRole(@RequestParam("id") int id,@RequestParam("pwd") String pass, Model map) {
+	public String validateRole(@RequestParam(value="id") Integer id,@RequestParam("pwd") String pass, Model map) {
 		Developer devobj = developerDao.getDeveloper(id,pass);
 		if(devobj==null){
 			System.out.println("Inside If");
@@ -29,7 +31,7 @@ public class LoginController {
 				map.addAttribute(devobj);
 				return "Admin";
 			}
-			else if(devobj.getRole().equals("Data entry operator")){
+			else if(devobj.getRole().equals("DEO")){
 				map.addAttribute(devobj);
 				return "DataEntry";
 			}

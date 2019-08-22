@@ -1,8 +1,8 @@
-package controller.service.dao.impl;
+package com.iris.get19.pbms.dao;
 
 import java.util.List;
 
-import controller.service.dao.model.*;
+import com.iris.get19.pbms.dao.model.Role;
 
 public interface RoleDao {
 	public List<Role> getAllRole();

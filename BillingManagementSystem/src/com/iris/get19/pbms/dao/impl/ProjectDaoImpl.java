@@ -1,15 +1,20 @@
-package controller.service.dao.impl;
+package com.iris.get19.pbms.dao.impl;
+
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import controller.service.dao.model.*;
+
+import com.iris.get19.pbms.dao.ProjectDao;
+import com.iris.get19.pbms.dao.model.Project;
+import com.iris.get19.pbms.dao.model.ProjectAllocation;
+import com.iris.get19.pbms.dao.model.ProjectConfiguration;
 
 
 @Component

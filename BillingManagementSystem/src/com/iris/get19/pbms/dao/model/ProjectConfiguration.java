@@ -1,4 +1,4 @@
-package controller.service.dao.model;
+package com.iris.get19.pbms.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,25 +9,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="project_config")
+@Table(name="ProjectConfig")
 public class ProjectConfiguration {
 	@Id
 	@GeneratedValue
-	@Column(name="CONFIGURATION_ID")
+	@Column(name="configid")
 	private int CONFIGURATION_ID;
 	
-	@Column(name="PER_HOUR_BILLING")
+	@Column(name="perHourBilling")
 	private int PER_HOUR_BILLING;
 	
-	@Column(name="LOCATION")
+	@Column(name="location")
 	private String LOCATION;
 	
 	@ManyToOne
-	@JoinColumn(name="P_ID")
+	@JoinColumn(name="projectid")
 	Project projectObj;
 	
 	@ManyToOne
-	@JoinColumn(name="ROLE_ID")
+	@JoinColumn(name="roleid")
 	Role roleObj;
 
 	public ProjectConfiguration() {

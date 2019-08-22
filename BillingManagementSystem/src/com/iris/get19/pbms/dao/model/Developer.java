@@ -1,4 +1,4 @@
-package controller.service.dao.model;
+package com.iris.get19.pbms.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,19 +10,19 @@ import javax.persistence.Table;
 public class Developer {
 
 	@Id
-	@Column(name="Dev_Id")
+	@Column(name="id")
 	private int developerId;
-	@Column(name="Developer_Name")
+	@Column(name="name")
 	private String developerName;
-	@Column(name="Gender")
+	@Column(name="gender")
 	private String gender;
-	@Column(name="Contact_No")
+	@Column(name="contactno")
 	private String contactNo;
-	@Column(name="Email")
+	@Column(name="email")
 	private String email;
-	@Column(name="Role")
+	@Column(name="applicationRole")
 	private String role;
-	@Column(name="Password")
+	@Column(name="password")
 	private String password;
 	
 	
@@ -56,6 +56,7 @@ public class Developer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getRole() {
 		return role;
 	}

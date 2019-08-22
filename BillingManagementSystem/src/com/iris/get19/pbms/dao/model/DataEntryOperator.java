@@ -1,4 +1,4 @@
-package controller.service.dao.model;
+package com.iris.get19.pbms.dao.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,30 +10,37 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Data_entry")
+@Table(name="DevAttendance")
 public class DataEntryOperator {
 
 	@Id
 	@GeneratedValue
-	@Column(name="Data_Id")
+	@Column(name="id")
 	private int dataEntryOperatorId;
 	
 	@Column(name="month")
 	private String month;
 	
-	@Column(name="full_day")
+	@Column(name="year")
+	private int year;
+
+	@Column(name="fullday")
 	private int fullDay;
 	
-	@Column(name="half_day")
+	@Column(name="halfday")
 	private int halfDay;
 	
 	@OneToOne
-	@JoinColumn(name="Dev_Id")
+	@JoinColumn(name="devid")
 	 Developer devObj;
 	
-	@OneToOne
-	@JoinColumn(name="configuration_Id")
-	 ProjectConfiguration configObj;
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
 
 	public int getdataEntryOperatorId() {
 		return dataEntryOperatorId;
@@ -75,13 +82,6 @@ public class DataEntryOperator {
 		this.devObj = devObj;
 	}
 
-	public ProjectConfiguration getConfigObj() {
-		return configObj;
-	}
-
-	public void setConfigObj(ProjectConfiguration configObj) {
-		this.configObj = configObj;
-	}
 
 	
 	

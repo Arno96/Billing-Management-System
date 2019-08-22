@@ -1,8 +1,10 @@
-package controller.service.dao.impl;
+package com.iris.get19.pbms.dao;
 
 import java.util.List;
 
-import controller.service.dao.model.*;
+import com.iris.get19.pbms.dao.model.Project;
+import com.iris.get19.pbms.dao.model.ProjectAllocation;
+import com.iris.get19.pbms.dao.model.ProjectConfiguration;
 
 public interface ProjectDao {
 

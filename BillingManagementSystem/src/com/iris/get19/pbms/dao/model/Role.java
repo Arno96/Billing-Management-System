@@ -1,4 +1,4 @@
-package controller.service.dao.model;
+package com.iris.get19.pbms.dao.model;
 
 
 import javax.persistence.Column;
@@ -7,18 +7,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Role") 
+@Table(name="DeveloperRole") 
 public class Role {
 	
 	@Id
-	@Column(name="Role_Id")
-	private String roleId;
-	@Column(name="Role_Name")
+	@Column(name="roleid")
+	private int roleId;
+	@Column(name="rolename")
 	private String roleName;
-	public String getRoleId() {
+	public int getRoleId() {
 		return roleId;
 	}
-	public void setRoleId(String roleId) {
+	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
 	public String getRoleName() {

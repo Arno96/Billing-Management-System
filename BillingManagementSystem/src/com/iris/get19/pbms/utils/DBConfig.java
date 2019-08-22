@@ -1,4 +1,4 @@
-package controller.service.dao.dbconfig;
+package com.iris.get19.pbms.utils;
 
 import java.util.Properties;
 
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages= {"com.getBatch3.BillingManagementBackend"})
+@ComponentScan(basePackages= {"com.iris.get19.pbms.controller"})
 public class DBConfig {
 
 	DriverManagerDataSource dataSource=new DriverManagerDataSource();
@@ -43,7 +43,7 @@ public class DBConfig {
 		
 		LocalSessionFactoryBuilder sb=new LocalSessionFactoryBuilder(getDataSource());
 		sb.addProperties(p);
-		sb.scanPackages("com.getBatch3.BillingManagementBackend.models");
+		sb.scanPackages("com.iris.get19.pbms.dao.model");
 		
 		return sb.buildSessionFactory();		
 	}

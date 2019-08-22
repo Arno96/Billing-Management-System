@@ -1,4 +1,6 @@
-package controller.service;
+package com.iris.get19.pbms.controller;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +12,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import controller.service.dao.impl.*;
-import controller.service.dao.model.*;
+
+import com.iris.get19.pbms.dao.DeveloperDao;
+import com.iris.get19.pbms.dao.ProjectDao;
+import com.iris.get19.pbms.dao.model.DataEntryOperator;
+import com.iris.get19.pbms.dao.model.Developer;
+import com.iris.get19.pbms.dao.model.ProjectConfiguration;
 
 @Controller
 public class DataEntryController {
