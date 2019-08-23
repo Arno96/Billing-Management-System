@@ -17,6 +17,7 @@ import com.iris.get19.pbms.dao.DeveloperDao;
 import com.iris.get19.pbms.dao.ProjectDao;
 import com.iris.get19.pbms.dao.model.DataEntryOperator;
 import com.iris.get19.pbms.dao.model.Developer;
+import com.iris.get19.pbms.dao.model.ProjectAllocation;
 import com.iris.get19.pbms.dao.model.ProjectConfiguration;
 
 @Controller
@@ -28,7 +29,8 @@ public class DataEntryController {
 	@Autowired
 	private ProjectDao projectDao;
 	
-	
+	@Autowired
+	private ProjectAllocation projectAllocation;
 	
 	@RequestMapping(value="mark",method=RequestMethod.GET)
 	public String marks(Model map)
@@ -56,7 +58,11 @@ public class DataEntryController {
 	
 	@RequestMapping(value="submitData",method=RequestMethod.GET)
 	public String attendance(@ModelAttribute(name="dataObj") DataEntryOperator dataObj,ModelMap map)
-	{
+	{	
+		Developer d =dataObj.getDevObj();
+		
+		 System.out.println("------" +d.getDeveloperId()+"---------");
+		
 		boolean saved=developerDao.setAttendance(dataObj);
 		if(saved) {
 			return "DataEntry";

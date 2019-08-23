@@ -94,13 +94,14 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value= {"Bill"},method=RequestMethod.GET)
-	public String DevBills(@RequestParam(name="x") String month,@RequestParam(name="dev") Developer d,ModelMap map)
+	public String DevBills(@RequestParam(name="x") String month,@ModelAttribute(name="dev") Developer d,ModelMap map)
 	{
 		int i=d.getDeveloperId();
 		DataEntryOperator deo=developerDao.getBill(i, month);
-		int halfDay=deo.gethalfDay()/2;
-		int fullDay=deo.getfullDay();
-		double bill=(halfDay*)
+		double halfDay=deo.gethalfDay()*4.5;
+		double fullDay=deo.getfullDay()*9;
+		double bill=(halfDay*(deo.getConfigObj().getPER_HOUR_BILLING())+fullDay*(deo.getConfigObj().getPER_HOUR_BILLING()));
+		map.addAttribute("bill",bill);
 		map.addAttribute("de", d);
 		map.addAttribute("mo",month);
 		return "devDetail";
