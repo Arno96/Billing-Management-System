@@ -10,14 +10,15 @@
 </head>
 <body>
 	<div align="center">
-	<form action="Bill" modelAttribute="dev" method="get">
-		<select>
+	<form action="Bill"  method="get">
+		<select name="developerId">
 		 	 <core:forEach items="${devL}" var="pOb">
-				<option value="${pOb}" >${pOb.developerName}</option>
+				<option value="${pOb.dObj.developerId}" >${pOb.dObj.developerName}</option>
 			 </core:forEach>
 		</select><br>
 		<label>Month :</label>
-		<input type="text" name="x"/><br>
+		<input type="text" name="month"/><br>
+		
 		<input type="submit" value="submit">
 	</form>
 	</div>

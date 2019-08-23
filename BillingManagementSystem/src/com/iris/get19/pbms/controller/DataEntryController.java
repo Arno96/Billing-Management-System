@@ -29,8 +29,7 @@ public class DataEntryController {
 	@Autowired
 	private ProjectDao projectDao;
 	
-	@Autowired
-	private ProjectAllocation projectAllocation;
+	
 	
 	@RequestMapping(value="mark",method=RequestMethod.GET)
 	public String marks(Model map)
@@ -60,8 +59,8 @@ public class DataEntryController {
 	public String attendance(@ModelAttribute(name="dataObj") DataEntryOperator dataObj,ModelMap map)
 	{	
 		Developer d =dataObj.getDevObj();
-		
-		 System.out.println("------" +d.getDeveloperId()+"---------");
+		//ProjectAllocation con = developerDao.getConfigObj(d.getDeveloperId());
+		// System.out.println("------" +con.getPcObj()+"---------");
 		
 		boolean saved=developerDao.setAttendance(dataObj);
 		if(saved) {

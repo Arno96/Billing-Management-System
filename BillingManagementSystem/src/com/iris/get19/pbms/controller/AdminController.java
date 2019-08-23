@@ -80,30 +80,84 @@ public class AdminController {
 	@RequestMapping(value= {"DevBilling"},method=RequestMethod.GET)
 	public String DevBill(ModelMap map)
 	{
-		List<Developer> dList = developerDao.getAllDeveloper();
-		List<Developer>	devL = new ArrayList<Developer>();
-		for(Developer d : dList)
-		{
-			if(d.getRole().equals("Developer")) {
-				
-				devL.add(d);
-			}
-		}
-		map.addAttribute("devL", devL);
+		List<ProjectAllocation> dList = developerDao.getAllAllocate();
+		
+		
+		map.addAttribute("devL", dList);
 		return "DevForm";
 	}
 	
-	@RequestMapping(value= {"Bill"},method=RequestMethod.GET)
-	public String DevBills(@RequestParam(name="x") String month,@ModelAttribute(name="dev") Developer d,ModelMap map)
+	@RequestMapping(value= {"projectBilling"},method=RequestMethod.GET)
+	public String ProjBill(ModelMap map)
 	{
-		int i=d.getDeveloperId();
-		DataEntryOperator deo=developerDao.getBill(i, month);
+		List<Project> pList = projectDao.getAllProject();
+	
+		
+		map.addAttribute("pList", pList);
+		return "ProjForm";
+	}
+	
+	/*@RequestMapping(value= {"BillProj"},method=RequestMethod.GET)
+	public String ProjBills(@RequestParam String month,@RequestParam int projectId,ModelMap map) {
+		
+	}*/
+	
+	
+	@RequestMapping(value= {"Bill"},method=RequestMethod.GET)
+	public String DevBills(@RequestParam String month,@RequestParam int developerId,ModelMap map)
+	{
+		ProjectAllocation configObj = developerDao.getConfig(developerId);
+		System.out.println(configObj.getPcObj() .getPER_HOUR_BILLING());
+		
+		double perHourBilling=configObj.getPcObj() .getPER_HOUR_BILLING();
+		
+		
+		DataEntryOperator deo=developerDao.getBill(developerId, month);
+		System.out.println("Data Entry Operator : "+deo);
+		
+		System.out.println(deo.getfullDay());
 		double halfDay=deo.gethalfDay()*4.5;
 		double fullDay=deo.getfullDay()*9;
-		double bill=(halfDay*(deo.getConfigObj().getPER_HOUR_BILLING())+fullDay*(deo.getConfigObj().getPER_HOUR_BILLING()));
+		double bill=(halfDay*perHourBilling+fullDay*perHourBilling);
 		map.addAttribute("bill",bill);
-		map.addAttribute("de", d);
+		map.addAttribute("de", developerId);
 		map.addAttribute("mo",month);
 		return "devDetail";
 	}
+	@RequestMapping(value= {"BillProj"},method=RequestMethod.GET)
+	public String BillingProject(@RequestParam(name="projectId") int id,@RequestParam(name="month") String month,ModelMap map) {
+		
+		System.out.println(id + month);
+		double bill = 0;
+		List<ProjectConfiguration> projConfigList=projectDao.getAllConfigId(id);
+		for(ProjectConfiguration configObj: projConfigList)
+		{
+			System.out.println(configObj.getCONFIGURATION_ID());
+			int cid = configObj.getCONFIGURATION_ID();
+			int perHourBilling = configObj.getPER_HOUR_BILLING();
+			System.out.println(perHourBilling);
+			ProjectAllocation proAllocate = developerDao.getProAllocationObj(cid);
+			System.out.println(proAllocate.getallocationId());
+			int developerId = proAllocate.getdObj().getDeveloperId();
+			System.out.println(developerId);
+			DataEntryOperator deo=developerDao.getBill(developerId, month);
+			System.out.println("Data Entry Operator : "+deo);
+			double halfDay=deo.gethalfDay()*4.5;
+			double fullDay=deo.getfullDay()*9;
+			bill+=(halfDay*perHourBilling+fullDay*perHourBilling);
+		}
+		map.addAttribute("bill", bill);
+		
+		/*System.out.println(projConfig.getProjectObj().);
+		
+		
+		
+		DataEntryOperator deo=developerDao.getBill(id, name);
+		System.out.println("Data Entry Operator : "+deo);
+		
+		System.out.println(deo.getfullDay());*/
+		
+		return "ProjectBilling";
+	}
+	
 }

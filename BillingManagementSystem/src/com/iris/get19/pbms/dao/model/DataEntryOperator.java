@@ -34,9 +34,6 @@ public class DataEntryOperator {
 	@JoinColumn(name="devid")
 	 Developer devObj;
 	
-	@OneToOne
-	@JoinColumn(name="configid")
-	 ProjectConfiguration configObj;
 	
 	public int getYear() {
 		return year;
@@ -86,13 +83,7 @@ public class DataEntryOperator {
 		this.devObj = devObj;
 	}
 
-	public ProjectConfiguration getConfigObj() {
-		return configObj;
-	}
 
-	public void setConfigObj(ProjectConfiguration configObj) {
-		this.configObj = configObj;
-	}
 
 	
 	

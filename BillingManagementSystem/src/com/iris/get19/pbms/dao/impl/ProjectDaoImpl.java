@@ -40,7 +40,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	}
 
 
-	public Project getProjectById(String projectId)
+	public Project getProjectById(int projectId)
 	{
 		try
 		{
@@ -100,6 +100,25 @@ public class ProjectDaoImpl implements ProjectDao{
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+
+	@Override
+	public List<ProjectConfiguration> getAllConfigId(int id) {
+
+		try
+		{
+			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from ProjectConfiguration where projectid=:p");
+			q.setParameter("p", id);
+			return q.list();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 	}
 

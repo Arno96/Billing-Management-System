@@ -9,12 +9,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<f:form action="" modelAttribute="de" method="get">
-	<h1>${de}</h1>
-		 <h1>${bill}</h1>
+	<div align="center">
+	<form action="BillProj"  method="get">
+		<select name="projectId">
+		 	 <core:forEach items="${pList}" var="pOb">
+				<option value="${pOb.projectId}" >${pOb.projectName}</option>
+			 </core:forEach>
+		</select><br>
+		<label>Month :</label>
+		<input type="text" name="month"/><br>
 		
-		
-		
-	</f:form>
+		<input type="submit" value="submit">
+	</form>
+	</div>
 </body>
 </html>

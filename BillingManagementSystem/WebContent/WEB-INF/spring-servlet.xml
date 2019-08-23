@@ -15,4 +15,5 @@
       <property name = "prefix" value = "/WEB-INF/client/view/jsp/" />
       <property name = "suffix" value = ".jsp" />
    </bean>
+  
 </beans>

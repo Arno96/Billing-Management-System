@@ -9,8 +9,9 @@ import com.iris.get19.pbms.dao.model.ProjectConfiguration;
 public interface ProjectDao {
 
 		public List<Project> getAllProject();
-		public Project getProjectById(String projectId);
+		public Project getProjectById(int projectId);
 		public boolean setProjectConfig(ProjectConfiguration obj);
 		public boolean setProjectAllocate(ProjectAllocation pObj);
 		public List<ProjectConfiguration> getAllProjectConfig();
+		public List<ProjectConfiguration> getAllConfigId(int id);
 }
