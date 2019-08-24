@@ -1,0 +1,24 @@
+// TODO
+
+
+1. LOGIN SQL INJECTION - Nilam
+
+2. PROJECT CONFIGURATION NAVBAR
+
+3. DEVELOPER ALLOCATION AND DATA MANIPULATION IN JS-GRID and AJAX
+
+4. DISPLAY PROJECT BILLING
+
+5. DISPLAY DEVELOPER BILLING 
+
+6. Integrating all pages with Bootstrap
+
+7. No login screen once user logged in
+
+8. Page Transitions
+
+9. Adding design to other pages than jsgrid
+
+
+//OPTIONAL
+7. SPRING SECURITY
