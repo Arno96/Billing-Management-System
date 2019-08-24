@@ -34,14 +34,14 @@ public class AdminController {
 	
 	@RequestMapping(value= {"AddProj"},method=RequestMethod.GET)
 	public String viewAdmin(ModelMap map) {
-		List<Project> pro = projectDao.getAllProject();
-		map.addAttribute("proj", pro);
-		ProjectConfiguration pObj = new ProjectConfiguration();
-		map.addAttribute("pObj", pObj);
-		Role rObj = new Role();
-		map.addAttribute("rObj",rObj);
-		List<Role> ro = roleDao.getAllRole();
-		map.addAttribute("role",ro);
+		List<Project> projectList = projectDao.getAllProject();
+		ProjectConfiguration projectObj = new ProjectConfiguration();
+		Role roleObj = new Role();
+		List<Role> rolesList = roleDao.getAllRole();
+		map.addAttribute("pObj", projectObj);
+		map.addAttribute("rObj",roleObj);
+		map.addAttribute("proj", projectList);
+		map.addAttribute("role",rolesList);
 		return "AddProject";
 	}
 	
@@ -61,7 +61,7 @@ public class AdminController {
 	public String submitConfig(@ModelAttribute(name="pObj") ProjectConfiguration pObj, ModelMap map) {
 		boolean saved = projectDao.setProjectConfig(pObj);
 		if(saved) {
-			return "Admin";
+			return "adminDashboard";
 		} else {
 			return "AddProject";
 		}
@@ -159,5 +159,8 @@ public class AdminController {
 		
 		return "ProjectBilling";
 	}
-	
+	@RequestMapping(value= {"homePage"},method=RequestMethod.GET)
+	public String homePage() {
+		return "adminDashboard";
+	}
 }

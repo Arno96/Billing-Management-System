@@ -22,14 +22,11 @@ public class LoginController {
 	public String validateRole(@RequestParam(value="id") Integer id,@RequestParam("pwd") String pass, Model map) {
 		Developer devobj = developerDao.getDeveloper(id,pass);
 		if(devobj==null){
-			System.out.println("Inside If");
 			return "login";
 		} else {
-			System.out.println("Inside Else");
-			if(devobj.getRole().equals("Admin"))
-			{
+			if(devobj.getRole().equals("Admin")){
 				map.addAttribute(devobj);
-				return "Admin";
+				return "adminDashboard";
 			}
 			else if(devobj.getRole().equals("DEO")){
 				map.addAttribute(devobj);

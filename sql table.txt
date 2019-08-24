@@ -1,0 +1,125 @@
+select * from project
+
+
+create table Project (
+projectid number primary key,
+projectname varchar2(40) not null,
+description varchar2(40) not null,
+active char(1)
+);
+
+create sequence project_seq start with 1
+
+insert into Project values(project_seq.nextval,'Royal Bank Of Canada','bank fuctioning in Canada','O');
+insert into Project values(project_seq.nextval,'State Bank of America','Spring Project','O');
+insert into Project values(project_seq.nextval,'Citi Bank','Java Project','O');
+insert into Project values(project_seq.nextval,'BOI','Angular Project','O');
+insert into Project values(project_seq.nextval,'HDFC Bank','.Net Project','O');
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+create table Developer(
+id number  primary key ,
+name varchar2(20) not null,
+gender varchar2(2) not null,
+contactno number not null unique,
+email varchar2(20) not null unique,
+applicationRole varchar2(20),
+password varchar2(10) 
+);
+
+create sequence devs_seq start with 1
+
+select * from developer;
+insert into developer values(devs_seq.nextval,'Tushar','M','8617736997','tushar@gmail.com','Admin','Tushar');
+
+insert into developer values(devs_seq.nextval,'Sagar','M','8618836997','sagar@gmail.com','DEO','Sagar');
+
+insert into developer values(devs_seq.nextval,'Rounak','M','8617736007','rounak@gmail.com','Developer','Rounak');
+
+insert into developer values(devs_seq.nextval,'Vinayak','M','8167736997','vinayak@gmail.com','Developer','Vinayak');
+
+insert into developer values(devs_seq.nextval,'Nilam','F','8897736997','nilam@gmail.com','Developer','Nilam');
+
+insert into developer values(devs_seq.nextval,'Pramit','M','8617756997','pramit@gmail.com','Developer','Pramit');
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+create table DeveloperRole (
+roleid number primary key ,
+rolename varchar2(40) not null
+);
+select * from developerrole
+
+create sequence devrole_seq start with 1
+
+insert into developerRole values(devrole_seq.nextval,' Project Manager');
+insert into developerRole values(devrole_seq.nextval,'Associate Project Manager');
+insert into developerRole values(devrole_seq.nextval,'Tech Lead');
+insert into developerRole values(devrole_seq.nextval,'Senior Developer');
+insert into developerRole values(devrole_seq.nextval,' Developer');
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+create table ProjectConfig(
+configid int primary key,
+projectid number,
+roleid number,
+location varchar2(10),
+perHourBilling number(3) ,
+foreign key(projectid) references Project(projectid),
+foreign key(roleid) references DeveloperRole(roleid)
+)
+select * from ProjectConfig
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+create table DevAllocation(
+id number primary key ,
+devid number,
+configid number,
+foreign key(devid) references Developer(id),
+foreign key(configid) references ProjectConfig(configid)
+);
+select * from devallocation
+
+delete from devallocation
+
+alter table devallocation add constraint uniquecid unique(configid);
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+commit
+
+create table DevAttendance(
+id number primary key ,
+devid number  references Developer(id),
+month varchar2(10),
+year number,
+halfday number,
+fullday number
+);
+alter table developer modify contactno varchar2(15)
+update developer set contactno=null 
+ commit
+delete from developer;
+commit;
+select * from DevAttendance
+
+drop table DevAttendance
+
+  select * from developer;
+select * from project;
+select * from developerrole;
+select * from ProjectConfig;
+select * from DevAllocation;
+select * from DevAttendance;
+
+
+
+
+
+
+drop table DevAttendance
+desc devattendance  

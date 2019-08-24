@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.thesmc.dao.BookDao">
+    <select id="getBookList" parameterType="map" resultType="Book">
+        SELECT
+            id,
+            name,
+            writer,
+            price,
+            genre,
+            publisher,
+            cnt
+        FROM
+            BOOKS
+        WHERE 
+            1 = 1
+       	<if test="id != null and id != '' ">
+		AND id like CONCAT('%',#{id},'%')
+		</if>
+       	<if test="name != null and name != '' ">
+		AND name like CONCAT('%',#{name},'%')
+		</if>
+		<if test="writer != null and writer != '' ">
+		AND writer like CONCAT('%',#{writer},'%')
+		</if>
+		<if test="price != null and price != '' ">
+		AND price like CONCAT('%',#{price},'%')
+		</if>
+		<if test="genre != null and genre != '' ">
+		AND genre like CONCAT('%',#{genre},'%')
+		</if>
+		<if test="publisher != null and publisher != '' ">
+		AND publisher like CONCAT('%',#{publisher},'%')
+		</if>
+		<if test="cnt != null and cnt != '' ">
+		AND cnt like CONCAT('%',#{cnt},'%')
+		</if>		
+    </select>
+    
+    <insert id="getBookInsert" parameterType="Book" >
+  	<![CDATA[
+		INSERT INTO BOOKS(   
+			name,
+			writer,
+            price,
+            genre,
+            publisher,
+            cnt			
+		)VALUES (   
+			#{name}
+			,#{writer}
+			,#{price}
+			,#{genre}
+			,#{publisher}
+			,#{cnt}
+		)
+	]]>	  		
+    </insert>
+    
+	<update id="getBookUpdate" parameterType="Book" >
+		UPDATE BOOKS 
+			<set>
+			name      = #{name},
+			writer    = #{writer},
+			price     = #{price},
+			genre     = #{genre},
+			publisher = #{publisher},
+			cnt       = #{cnt}
+			</set>
+		WHERE id = #{id}
+	</update>
+ 
+ 	<delete id="getBookDelete" parameterType="String">
+		DELETE 
+		FROM 
+			BOOKS
+		WHERE id = #{id}
+	</delete>   
+</mapper>
